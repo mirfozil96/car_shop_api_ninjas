@@ -41,7 +41,6 @@ class MainVm with ChangeNotifier {
 
   @override
   void dispose() {
-    // scrollController.removeListener();
     scrollController.dispose();
     super.dispose();
   }
