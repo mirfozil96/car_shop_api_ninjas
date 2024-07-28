@@ -11,8 +11,7 @@ class MainVm with ChangeNotifier {
   int page = 0;
 
   // Parameters
-  String? searchParameter;
-  String? searchValue;
+  Map<String, String?> filters = {};
 
   MainVm() {
     // scrollController.addListener();
@@ -21,17 +20,14 @@ class MainVm with ChangeNotifier {
   Future<void> getData() async {
     List<GetAllCarModel> newCars = await MainRepo().getAllCars(
           limit: limit,
-          searchParameter: searchParameter,
-          searchValue: searchValue,
+          filters: filters,
         ) ??
         [];
     allCars.addAll(newCars);
   }
 
-  void searchCars(
-      {String? searchParameter, String? searchValue, int? limit}) async {
-    this.searchParameter = searchParameter;
-    this.searchValue = searchValue;
+  void searchCars({Map<String, String?>? filters, int? limit}) async {
+    this.filters = filters ?? this.filters;
     this.limit = limit ?? this.limit;
     allCars.clear();
 

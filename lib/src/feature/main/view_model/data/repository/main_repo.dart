@@ -14,15 +14,20 @@ final mainFetchData = FutureProvider((ref) async {
 class MainRepo {
   Future<List<GetAllCarModel>?> getAllCars({
     required int limit,
-    String? searchParameter,
-    String? searchValue,
+    Map<String, String?>? filters,
   }) async {
     String api = ApiConstants.apiGetAllImages;
-    Map<String, String> params = ApiConstants.paramsGetAllImages(
-      limit: limit.toString(),
-      searchParameter: searchParameter,
-      searchValue: searchValue,
-    );
+    Map<String, String> params = {
+      'limit': limit.toString(),
+    };
+
+    if (filters != null) {
+      filters.forEach((key, value) {
+        if (value != null && value.isNotEmpty) {
+          params[key] = value;
+        }
+      });
+    }
 
     String? result = await Api.GET(api, params);
     if (result != null) {
