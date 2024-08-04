@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../riverpod.dart';
+import '../../../settings/inherited_theme_notifier.dart';
 import '../../view_model/data/repository/main_repo.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -61,10 +62,29 @@ class HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = InheritedThemeNotifier.maybeOf(context);
     final mainVm = ref.watch(mainVM);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cars"),
+        actions: [
+          DropdownButton<ThemeMode>(
+            value: themeController?.themeMode ?? ThemeMode.system,
+            onChanged: (ThemeMode? newMode) {
+              if (newMode != null) {
+                setState(() {
+                  themeController?.switchThemeMode(newMode);
+                });
+              }
+            },
+            items: ThemeMode.values.map((ThemeMode mode) {
+              return DropdownMenuItem<ThemeMode>(
+                value: mode,
+                child: Text(mode.toString().split('.').last),
+              );
+            }).toList(),
+          ),
+        ],
       ),
       body: Column(
         children: [

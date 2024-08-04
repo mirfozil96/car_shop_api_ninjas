@@ -1,4 +1,4 @@
-package com.example.car_shop_api_ninjas
+package com.andoid.application
 
 import io.flutter.embedding.android.FlutterActivity
 
