@@ -8,7 +8,6 @@ import '../../feature/settings/locale_controller.dart';
 import '../../feature/settings/remote_controller.dart';
 import '../../feature/settings/theme_controller.dart';
 
-
 final ThemeController themeController = ThemeController();
 final LocalController localController = LocalController();
 final RemoteController remoteController = RemoteController();

@@ -29,7 +29,7 @@ class MainRepo {
       });
     }
 
-    String? result = await Api.GET(api, params);
+    String? result = await Api.get(api, params);
     if (result != null) {
       List<GetAllCarModel> getAllCarModels = getAllCarModelFromJson(result);
       return getAllCarModels;

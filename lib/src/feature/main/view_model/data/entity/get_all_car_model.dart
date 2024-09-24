@@ -71,9 +71,9 @@ class GetAllCarModel {
       };
 }
 
-enum FuelType { GAS }
+enum FuelType { gas }
 
-final fuelTypeValues = EnumValues({"gas": FuelType.GAS});
+final fuelTypeValues = EnumValues({"gas": FuelType.gas});
 
 enum Transmission { A }
 

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class ThemeController with ChangeNotifier {
         _themeMode = ThemeMode.values[themeModeIndex];
         notifyListeners();
       }
-      print("Initialized ThemeController with theme mode: $_themeMode");
+      log("Initialized ThemeController with theme mode: $_themeMode");
     });
   }
 
@@ -29,7 +30,7 @@ class ThemeController with ChangeNotifier {
     SharedPreferences.getInstance().then<void>((sp) {
       sp.setInt(_spThemeKey, newMode.index);
     });
-    print("Switched theme mode to: $_themeMode");
+    log("Switched theme mode to: $_themeMode");
   }
 
   ThemeData get theme {
